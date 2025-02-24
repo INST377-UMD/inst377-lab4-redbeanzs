@@ -1,0 +1,75 @@
+<head>
+    <title>Interactive Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: rgb(228, 99, 165);
+        }
+        .section {
+            border: 2px solid black;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-heading">Interactive Web Page</h1>
+    
+    <div class="section" id="alert-section">
+        <h2>Alert Me Section</h2>
+        <form onsubmit="alertUser(event)">
+            <input type="text" id="name-input" placeholder="Enter your name" required>
+            <button type="submit">Alert Me</button>
+        </form>
+    </div>
+
+    <div class="section" id="color-section">
+        <h2>Change Color Section</h2>
+        <button onclick="toggleColor()">Change Color</button>
+    </div>
+
+    <div class="section" id="text-tester-section">
+        <h2>Text Tester Section</h2>
+        <form onsubmit="validateText(event)">
+            <input type="text" id="text-input" placeholder="Enter text">
+            <button type="submit">Validate Text</button>
+        </form>
+    </div>
+    
+    <div class="section" id="add-text-section">
+        <h2>Add Text Section</h2>
+        <input type="text" id="add-text-input" placeholder="Enter text to add">
+        <button onclick="addText()">Add Text</button>
+    </div>
+    
+    <script>
+        function alertUser(event) {
+            event.preventDefault();
+            let name = document.getElementById("name-input").value;
+            alert("Hi " + name + "!");
+        }
+
+        function toggleColor() {
+            let body = document.body;
+            body.style.backgroundColor = body.style.backgroundColor === 'pink' ? 'green' : 'pink';
+        }
+
+        function validateText(event) {
+            event.preventDefault();
+            let text = document.getElementById("text-input").value;
+            let validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            if (validation.test(text)) {
+                alert("Text contains special characters!");
+            } else {
+                alert("Text is valid!");
+            }
+        }
+
+        function addText() {
+            let heading = document.getElementById("main-heading");
+            let additionalText = document.getElementById("add-text-input").value;
+            heading.innerText += " " + additionalText;
+        }
+    </script>
+</body>
